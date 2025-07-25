@@ -138,13 +138,6 @@ function App() {
           </div>
         )}
 
-        {/* Timezone Comparison Charts */}
-        <TimezoneComparison
-          selectedTimezones={selectedTimezones}
-          currentTime={currentTime}
-          use24Hour={use24Hour}
-        />
-
         {/* Time Difference Calculator */}
         <TimeDifferenceCalculator
           selectedTimezones={selectedTimezones}
@@ -154,6 +147,13 @@ function App() {
         {/* Meeting Time Finder */}
         <MeetingTimeFinder
           selectedTimezones={selectedTimezones}
+          use24Hour={use24Hour}
+        />
+
+        {/* Timezone Comparison Charts */}
+        <TimezoneComparison
+          selectedTimezones={selectedTimezones}
+          currentTime={currentTime}
           use24Hour={use24Hour}
         />
       </div>
