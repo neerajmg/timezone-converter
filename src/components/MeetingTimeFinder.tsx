@@ -169,7 +169,7 @@ export function MeetingTimeFinder({ selectedTimezones, use24Hour }: MeetingTimeF
         )}
         
         <div className="text-sm text-muted-foreground">
-          Analyzing business hours ({formatBusinessHours()}) across {selectedTimezones.length} timezones
+          Analyzing business hours (9:00 AM - 05:00 PM) across timezones
         </div>
         
         {overlaps.length > 0 ? (
