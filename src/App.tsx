@@ -145,10 +145,12 @@ function App() {
         />
 
         {/* Meeting Time Finder */}
-        <MeetingTimeFinder
-          selectedTimezones={selectedTimezones}
-          use24Hour={use24Hour}
-        />
+        <div className="mb-8">
+          <MeetingTimeFinder
+            selectedTimezones={selectedTimezones}
+            use24Hour={use24Hour}
+          />
+        </div>
 
         {/* Timezone Comparison Charts */}
         <TimezoneComparison
