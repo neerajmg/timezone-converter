@@ -94,9 +94,7 @@ export const convertTimeToTimezone = (date: Date, fromTimezone: string, toTimezo
   }
 };
 
-export const findBusinessHourOverlaps = (timezones: string[], date: Date = new Date()) => {
-  const businessStart = 9; // 9 AM
-  const businessEnd = 17; // 5 PM
+export const findBusinessHourOverlaps = (timezones: string[], startHour: number = 9, endHour: number = 17, date: Date = new Date()) => {
   const overlaps: { hour: number; zones: string[] }[] = [];
   
   for (let hour = 0; hour < 24; hour++) {
@@ -107,7 +105,7 @@ export const findBusinessHourOverlaps = (timezones: string[], date: Date = new D
       try {
         const localTime = new Date(testTime.toLocaleString('en-US', { timeZone: tz }));
         const localHour = localTime.getHours();
-        return localHour >= businessStart && localHour < businessEnd;
+        return localHour >= startHour && localHour < endHour;
       } catch {
         return false;
       }
@@ -150,11 +148,11 @@ export const getTimezoneOffset = (timezone: string, date: Date): number => {
 /**
  * Check if a given time falls within business hours for a timezone
  */
-export const isBusinessHour = (date: Date, timezone: string): boolean => {
+export const isBusinessHour = (date: Date, timezone: string, startHour: number = 9, endHour: number = 17): boolean => {
   try {
     const localTime = new Date(date.toLocaleString('en-US', { timeZone: timezone }));
     const hour = localTime.getHours();
-    return hour >= 9 && hour < 17;
+    return hour >= startHour && hour < endHour;
   } catch {
     return false;
   }
