@@ -120,3 +120,42 @@ export const findBusinessHourOverlaps = (timezones: string[], date: Date = new D
   
   return overlaps;
 };
+
+/**
+ * Calculate the time difference in hours between two timezones
+ */
+export const getTimezoneOffsetDifference = (fromTimezone: string, toTimezone: string, date: Date = new Date()): number => {
+  try {
+    const fromOffset = getTimezoneOffset(fromTimezone, date);
+    const toOffset = getTimezoneOffset(toTimezone, date);
+    return (toOffset - fromOffset) / (1000 * 60 * 60);
+  } catch {
+    return 0;
+  }
+};
+
+/**
+ * Get timezone offset in milliseconds from UTC
+ */
+export const getTimezoneOffset = (timezone: string, date: Date): number => {
+  try {
+    const utcTime = new Date(date.toLocaleString('en-US', { timeZone: 'UTC' }));
+    const localTime = new Date(date.toLocaleString('en-US', { timeZone: timezone }));
+    return localTime.getTime() - utcTime.getTime();
+  } catch {
+    return 0;
+  }
+};
+
+/**
+ * Check if a given time falls within business hours for a timezone
+ */
+export const isBusinessHour = (date: Date, timezone: string): boolean => {
+  try {
+    const localTime = new Date(date.toLocaleString('en-US', { timeZone: timezone }));
+    const hour = localTime.getHours();
+    return hour >= 9 && hour < 17;
+  } catch {
+    return false;
+  }
+};

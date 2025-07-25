@@ -4,6 +4,8 @@ import { TimezoneCard } from './components/TimezoneCard';
 import { TimezoneSelector } from './components/TimezoneSelector';
 import { TimeConverter } from './components/TimeConverter';
 import { MeetingTimeFinder } from './components/MeetingTimeFinder';
+import { TimezoneComparison } from './components/TimezoneComparison';
+import { TimeDifferenceCalculator } from './components/TimeDifferenceCalculator';
 import { Globe } from '@phosphor-icons/react';
 import { timezones, type TimezoneData, convertTimeToTimezone } from './lib/timezone-utils';
 
@@ -135,6 +137,19 @@ function App() {
             </p>
           </div>
         )}
+
+        {/* Timezone Comparison Charts */}
+        <TimezoneComparison
+          selectedTimezones={selectedTimezones}
+          currentTime={currentTime}
+          use24Hour={use24Hour}
+        />
+
+        {/* Time Difference Calculator */}
+        <TimeDifferenceCalculator
+          selectedTimezones={selectedTimezones}
+          use24Hour={use24Hour}
+        />
 
         {/* Meeting Time Finder */}
         <MeetingTimeFinder
